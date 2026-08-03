@@ -1,5 +1,4 @@
 use std::io::stdin;
-
 fn main() {
     loop {
         let mut operation = String::new();
@@ -15,6 +14,8 @@ fn main() {
 
         match operation {
             "add" => {
+                println!("You chose add");
+
                 let mut a = String::new();
                 println!("Enter first number:");
                 stdin().read_line(&mut a).unwrap();
@@ -44,6 +45,32 @@ fn main() {
 
             "sub" => {
                 println!("You chose sub");
+
+                let mut a = String::new();
+                println!("Enter first number:");
+                stdin().read_line(&mut a).unwrap();
+
+                let a: i32 = match a.trim().parse() {
+                    Ok(n) => n,
+                    Err(_) => {
+                        println!("Invalid number");
+                        continue;
+                    }
+                };
+
+                let mut b = String::new();
+                println!("Enter second number:");
+                stdin().read_line(&mut b).unwrap();
+
+                let b: i32 = match b.trim().parse() {
+                    Ok(n) => n,
+                    Err(_) => {
+                        println!("Invalid number");
+                        continue;
+                    }
+                };
+
+                println!("Result: {}", a - b);
             }
 
             _ => {
