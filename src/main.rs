@@ -1,21 +1,54 @@
 use std::io::stdin;
 
 fn main() {
-    let mut operation = String::new();
-    println!("Enter operation (add/ sub/ mul/ div): ");
-    
-    stdin().read_line(&mut operation).unwrap();
-    let operation = operation.trim();
+    loop {
+        let mut operation = String::new();
+        println!("Enter operation (add / sub / mul / div / exit):");
 
-    match operation {
-        "add" => {
-            println!("You choose add");
+        stdin().read_line(&mut operation).unwrap();
+        let operation = operation.trim();
+
+        if operation == "exit" {
+            println!("Exiting...");
+            break;
         }
-        "sub" => {
-            println!("You choose sub");
-        }
-        _ => {
-            println!("Invalid operation");
+
+        match operation {
+            "add" => {
+                let mut a = String::new();
+                println!("Enter first number:");
+                stdin().read_line(&mut a).unwrap();
+
+                let a: i32 = match a.trim().parse() {
+                    Ok(n) => n,
+                    Err(_) => {
+                        println!("Invalid number");
+                        continue;
+                    }
+                };
+
+                let mut b = String::new();
+                println!("Enter second number:");
+                stdin().read_line(&mut b).unwrap();
+
+                let b: i32 = match b.trim().parse() {
+                    Ok(n) => n,
+                    Err(_) => {
+                        println!("Invalid number");
+                        continue;
+                    }
+                };
+
+                println!("Result: {}", a + b);
+            }
+
+            "sub" => {
+                println!("You chose sub");
+            }
+
+            _ => {
+                println!("Invalid operation");
+            }
         }
     }
 }
