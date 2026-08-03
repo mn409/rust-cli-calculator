@@ -16,29 +16,34 @@ fn main() {
             "add" => {
                 println!("You chose add");
 
-                let mut a = String::new();
-                println!("Enter first number:");
-                stdin().read_line(&mut a).unwrap();
+                // let mut a = String::new();
+                // println!("Enter first number:");
+                // stdin().read_line(&mut a).unwrap();
 
-                let a: i32 = match a.trim().parse() {
-                    Ok(n) => n,
-                    Err(_) => {
-                        println!("Invalid number");
-                        continue;
-                    }
-                };
+                // let a: i32 = match a.trim().parse() {
+                //     Ok(n) => n,
+                //     Err(_) => {
+                //         println!("Invalid number");
+                //         continue;
 
-                let mut b = String::new();
-                println!("Enter second number:");
-                stdin().read_line(&mut b).unwrap();
+                //     }
+                // };
+                let a = get_number("Enter first number:");
 
-                let b: i32 = match b.trim().parse() {
-                    Ok(n) => n,
-                    Err(_) => {
-                        println!("Invalid number");
-                        continue;
-                    }
-                };
+
+                // let mut b = String::new();
+                // println!("Enter second number:");
+                // stdin().read_line(&mut b).unwrap();
+
+                // let b: i32 = match b.trim().parse() {
+                //     Ok(n) => n,
+                //     Err(_) => {
+                //         println!("Invalid number");
+                //         continue;
+                //     }
+                // };
+                let b = get_number("Enter second number:");
+
 
                 println!("Result: {}", a + b);
             }
@@ -46,29 +51,32 @@ fn main() {
             "sub" => {
                 println!("You chose sub");
 
-                let mut a = String::new();
-                println!("Enter first number:");
-                stdin().read_line(&mut a).unwrap();
+                // let mut a = String::new();
+                // println!("Enter first number:");
+                // stdin().read_line(&mut a).unwrap();
 
-                let a: i32 = match a.trim().parse() {
-                    Ok(n) => n,
-                    Err(_) => {
-                        println!("Invalid number");
-                        continue;
-                    }
-                };
+                // let a: i32 = match a.trim().parse() {
+                //     Ok(n) => n,
+                //     Err(_) => {
+                //         println!("Invalid number");
+                //         continue;
+                //     }
+                // };
+                let a = get_number("Enter first number:");
 
-                let mut b = String::new();
-                println!("Enter second number:");
-                stdin().read_line(&mut b).unwrap();
+                // let mut b = String::new();
+                // println!("Enter second number:");
+                // stdin().read_line(&mut b).unwrap();
 
-                let b: i32 = match b.trim().parse() {
-                    Ok(n) => n,
-                    Err(_) => {
-                        println!("Invalid number");
-                        continue;
-                    }
-                };
+                // let b: i32 = match b.trim().parse() {
+                //     Ok(n) => n,
+                //     Err(_) => {
+                //         println!("Invalid number");
+                //         continue;
+                //     }
+                // };
+                let b = get_number("Enter second number:");
+
 
                 println!("Result: {}", a - b);
             }
@@ -77,5 +85,21 @@ fn main() {
                 println!("Invalid operation");
             }
         }
+    }
+}
+
+fn get_number(message: &str) -> i32 {
+    loop {
+        let mut input = String::new();
+        println!("{}", message);
+        stdin().read_line(&mut input).unwrap();
+
+        match input.trim().parse() {
+            Ok(n) => return n,
+            Err(_) => {
+                println!("Invalid input");
+                continue;
+            }
+        };
     }
 }
