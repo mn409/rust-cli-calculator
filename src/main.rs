@@ -15,27 +15,21 @@ fn main() {
         match operation {
             "add" => {
                 println!("You chose add");
-
-                let a = get_number("Enter first number:");
-                let b = get_number("Enter second number:");
+                let (a, b) = get_two_numbers("Enter first number", "Enter second number");
 
                 println!("Result: {}", a + b);
             }
 
             "sub" => {
                 println!("You chose sub");
-
-                let a = get_number("Enter first number:");
-                let b = get_number("Enter second number:");
+                let (a, b) = get_two_numbers("Enter first number", "Enter second number");
 
                 println!("Result: {}", a - b);
             }
 
             "mul" => {
                 println!("You chose mul");
-                
-                let a = get_number("Enter first number:");
-                let b = get_number("Enter second number:");
+               let (a, b) = get_two_numbers("Enter first number", "Enter second number");
 
                 println!("Result: {}", a * b);
             }
@@ -66,6 +60,7 @@ fn main() {
 fn get_number(message: &str) -> i32 {
     loop {
         let mut input = String::new();
+
         println!("{}", message);
         stdin().read_line(&mut input).unwrap();
 
@@ -77,4 +72,11 @@ fn get_number(message: &str) -> i32 {
             }
         };
     }
+}
+
+fn get_two_numbers(msg1: &str, msg2: &str) -> (i32, i32) {
+    let a = get_number(msg1);
+    let b = get_number(msg2);
+
+    return (a, b)
 }
