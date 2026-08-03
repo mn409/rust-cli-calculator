@@ -40,6 +40,22 @@ fn main() {
                 println!("Result: {}", a * b);
             }
 
+            "div" => {
+                println!("You chose div");
+                
+                let a = get_number("Enter first number:");
+                loop {
+                    let b = get_number("Enter second number:");
+                    if b == 0 {
+                        println!("Not divisible by 0, provide another number");
+                        continue;
+                    } else {
+                        println!("Result: {}", (a as f32) / (b as f32));
+                        break;
+                    }
+                }
+            }
+                
             _ => {
                 println!("Invalid operation");
             }
