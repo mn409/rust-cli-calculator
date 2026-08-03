@@ -16,34 +16,8 @@ fn main() {
             "add" => {
                 println!("You chose add");
 
-                // let mut a = String::new();
-                // println!("Enter first number:");
-                // stdin().read_line(&mut a).unwrap();
-
-                // let a: i32 = match a.trim().parse() {
-                //     Ok(n) => n,
-                //     Err(_) => {
-                //         println!("Invalid number");
-                //         continue;
-
-                //     }
-                // };
                 let a = get_number("Enter first number:");
-
-
-                // let mut b = String::new();
-                // println!("Enter second number:");
-                // stdin().read_line(&mut b).unwrap();
-
-                // let b: i32 = match b.trim().parse() {
-                //     Ok(n) => n,
-                //     Err(_) => {
-                //         println!("Invalid number");
-                //         continue;
-                //     }
-                // };
                 let b = get_number("Enter second number:");
-
 
                 println!("Result: {}", a + b);
             }
@@ -51,34 +25,19 @@ fn main() {
             "sub" => {
                 println!("You chose sub");
 
-                // let mut a = String::new();
-                // println!("Enter first number:");
-                // stdin().read_line(&mut a).unwrap();
-
-                // let a: i32 = match a.trim().parse() {
-                //     Ok(n) => n,
-                //     Err(_) => {
-                //         println!("Invalid number");
-                //         continue;
-                //     }
-                // };
                 let a = get_number("Enter first number:");
-
-                // let mut b = String::new();
-                // println!("Enter second number:");
-                // stdin().read_line(&mut b).unwrap();
-
-                // let b: i32 = match b.trim().parse() {
-                //     Ok(n) => n,
-                //     Err(_) => {
-                //         println!("Invalid number");
-                //         continue;
-                //     }
-                // };
                 let b = get_number("Enter second number:");
 
-
                 println!("Result: {}", a - b);
+            }
+
+            "mul" => {
+                println!("You chose mul");
+                
+                let a = get_number("Enter first number:");
+                let b = get_number("Enter second number:");
+
+                println!("Result: {}", a * b);
             }
 
             _ => {
