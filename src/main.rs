@@ -1,9 +1,20 @@
 use std::io::stdin;
+use std::collections::HashMap;
+
 fn main() {
+
+    let mut operations: HashMap<&str, OperationType> = HashMap::new();
+
+    operations.insert("add", OperationType::Binary(add));
+    operations.insert("sub", OperationType::Binary(sub));
+    operations.insert("mul", OperationType::Binary(mul));
+    operations.insert("div", OperationType::Binary(div));
+    operations.insert("square", OperationType::Unary(square));
+
     loop {
         let mut operation = String::new();
-        println!("Enter operation (add / sub / mul / div / exit):");
 
+        println!("Enter operation (add / sub / mul / div / square / exit):");
         stdin().read_line(&mut operation).unwrap();
         let operation = operation.trim();
 
@@ -12,45 +23,36 @@ fn main() {
             break;
         }
 
-        match operation {
-            "add" => {
-                println!("You chose add");
-                let (a, b) = get_two_numbers("Enter first number", "Enter second number");
+        let op = operations.get(operation);
 
-                println!("Result: {}", a + b);
-            }
+        match op {
+            Some(operation_type) => {
+                match operation_type {
 
-            "sub" => {
-                println!("You chose sub");
-                let (a, b) = get_two_numbers("Enter first number", "Enter second number");
+                    // 🔥 Unary case
+                    OperationType::Unary(f) => {
+                        let a = get_number("Enter number:");
+                        let result = f(a);
+                        println!("Result: {}", result);
+                    }
 
-                println!("Result: {}", a - b);
-            }
+                    OperationType::Binary(f) => {
+                        let a = get_number("Enter first number:");
+                        let b = get_number("Enter second number:");
 
-            "mul" => {
-                println!("You chose mul");
-               let (a, b) = get_two_numbers("Enter first number", "Enter second number");
+                        // Special handling for division
+                        if operation == "div" && b == 0 {
+                            println!("Cannot divide by zero");
+                            continue;
+                        }
 
-                println!("Result: {}", a * b);
-            }
-
-            "div" => {
-                println!("You chose div");
-                
-                let a = get_number("Enter first number:");
-                loop {
-                    let b = get_number("Enter second number:");
-                    if b == 0 {
-                        println!("Not divisible by 0, provide another number");
-                        continue;
-                    } else {
-                        println!("Result: {}", (a as f32) / (b as f32));
-                        break;
+                        let result = f(a, b);
+                        println!("Result: {}", result);
                     }
                 }
             }
-                
-            _ => {
+
+            None => {
                 println!("Invalid operation");
             }
         }
@@ -68,15 +70,34 @@ fn get_number(message: &str) -> i32 {
             Ok(n) => return n,
             Err(_) => {
                 println!("Invalid input");
-                continue;
             }
-        };
+        }
     }
 }
 
-fn get_two_numbers(msg1: &str, msg2: &str) -> (i32, i32) {
-    let a = get_number(msg1);
-    let b = get_number(msg2);
 
-    return (a, b)
+fn add(a: i32, b: i32) -> f32 {
+    (a + b) as f32
+}
+
+fn sub(a: i32, b: i32) -> f32 {
+    (a - b) as f32
+}
+
+fn mul(a: i32, b: i32) -> f32 {
+    (a * b) as f32
+}
+
+fn div(a: i32, b: i32) -> f32 {
+    (a as f32) / (b as f32)
+}
+
+fn square(a: i32) -> f32 {
+    (a * a) as f32
+}
+
+
+enum OperationType {
+    Unary(fn(i32) -> f32),
+    Binary(fn(i32, i32) -> f32),
 }
