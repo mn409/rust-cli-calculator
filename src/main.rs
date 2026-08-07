@@ -29,7 +29,6 @@ fn main() {
             Some(operation_type) => {
                 match operation_type {
 
-                    // 🔥 Unary case
                     OperationType::Unary(f) => {
                         let a = get_number("Enter number:");
                         let result = f(a);
@@ -40,7 +39,6 @@ fn main() {
                         let a = get_number("Enter first number:");
                         let b = get_number("Enter second number:");
 
-                        // Special handling for division
                         if operation == "div" && b == 0 {
                             println!("Cannot divide by zero");
                             continue;
