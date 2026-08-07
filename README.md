@@ -50,8 +50,9 @@ This makes the code easier to extend and maintain.
 ```bash
 cargo run
 
+---
 
-Future Improvements
+**## Future Improvements**
 
 Add more operations (cube, sqrt, power, etc.)
 Support more than 2 inputs
@@ -62,7 +63,7 @@ Convert into a reusable library
 Improve CLI experience (better prompts, formatting)
 
 
-Note
+**Note**
 
 This project is focused on learning Rust concepts rather than production-level code.
 More improvements and refactoring will be done as I progress.
