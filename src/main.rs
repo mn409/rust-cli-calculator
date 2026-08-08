@@ -10,11 +10,13 @@ fn main() {
     operations.insert("mul", OperationType::Binary(mul));
     operations.insert("div", OperationType::Binary(div));
     operations.insert("square", OperationType::Unary(square));
+    operations.insert("sqrt", OperationType::Unary(sqrt));
+
 
     loop {
         let mut operation = String::new();
 
-        println!("Enter operation (add / sub / mul / div / square / exit):");
+        println!("Enter operation (add / sub / mul / div / square / sqrt / exit):");
         stdin().read_line(&mut operation).unwrap();
         let operation = operation.trim();
 
@@ -92,6 +94,10 @@ fn div(a: i32, b: i32) -> f32 {
 
 fn square(a: i32) -> f32 {
     (a * a) as f32
+}
+
+fn sqrt(a: i32) -> f32 {
+    (a as f32).sqrt()
 }
 
 
