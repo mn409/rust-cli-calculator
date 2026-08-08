@@ -1,6 +1,13 @@
 use std::io::stdin;
 use std::collections::HashMap;
 
+mod input;
+mod operations;
+
+use input::get_number;
+use operations::math::*;
+use operations::types::OperationType;
+
 fn main() {
 
     let mut operations: HashMap<&str, OperationType> = HashMap::new();
@@ -57,51 +64,4 @@ fn main() {
             }
         }
     }
-}
-
-fn get_number(message: &str) -> i32 {
-    loop {
-        let mut input = String::new();
-
-        println!("{}", message);
-        stdin().read_line(&mut input).unwrap();
-
-        match input.trim().parse() {
-            Ok(n) => return n,
-            Err(_) => {
-                println!("Invalid input");
-            }
-        }
-    }
-}
-
-
-fn add(a: i32, b: i32) -> f32 {
-    (a + b) as f32
-}
-
-fn sub(a: i32, b: i32) -> f32 {
-    (a - b) as f32
-}
-
-fn mul(a: i32, b: i32) -> f32 {
-    (a * b) as f32
-}
-
-fn div(a: i32, b: i32) -> f32 {
-    (a as f32) / (b as f32)
-}
-
-fn square(a: i32) -> f32 {
-    (a * a) as f32
-}
-
-fn sqrt(a: i32) -> f32 {
-    (a as f32).sqrt()
-}
-
-
-enum OperationType {
-    Unary(fn(i32) -> f32),
-    Binary(fn(i32, i32) -> f32),
 }
