@@ -13,6 +13,7 @@ A simple command-line calculator built in Rust as part of my learning journey.
   - div
 - Unary operation:
   - square
+  - sqrt
 - Input validation (prevents invalid numbers)
 - Continuous loop until user exits
 - Handles invalid operations safely
@@ -53,7 +54,7 @@ cargo run
 
 ## Future Improvements
 
-- Add more operations (cube, sqrt, power, etc.)
+- Add more operations (cube, power, etc.)
 - Support more than 2 inputs
 - Handle floating-point inputs directly
 - Improve error handling using `Result`
