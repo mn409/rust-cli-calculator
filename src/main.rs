@@ -40,8 +40,10 @@ fn main() {
 
                     OperationType::Unary(f) => {
                         let a = get_number("Enter number:");
-                        let result = f(a);
-                        println!("Result: {}", result);
+                        match f(a) {
+                            Ok(value) => println!("Result: {}", value),
+                            Err(e) => println!("Error: {}", e),
+                        }
                     }
 
                     OperationType::Binary(f) => {
@@ -53,8 +55,10 @@ fn main() {
                             continue;
                         }
 
-                        let result = f(a, b);
-                        println!("Result: {}", result);
+                        match f(a, b) {
+                            Ok(value) => println!("Result: {}", value),
+                            Err(e) => println!("Error: {}", e),
+                        }
                     }
                 }
             }
